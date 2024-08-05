@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 163 100% 14%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+    --radius: 0.5rem;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+
+    /* better.com */
+    /* here update and use all below colors into hsl values like above */
+    --accent-background: #017848;
+    --accent-primary: #004733;
+    --accent-secondary: #dfe0dc;
+    --background-inverse-primary: #073126;
+    --background-inverse-secondary: #017848;
+    --background-inverse-tertiary: #cce9d3;
+    --background-primary: #fffdfa;
+    --background-secondary: #f6f6f3;
+    --background-tertiary: #ffffff;
+    --error-foreground: #a32600;
+    --error-primary: #a32600;
+    --info-foreground: #3e089b;
+    --info-secondary: #6e4cf6;
+    --graph-primary: #1fe07f;
+    --graph-tertiary: #1ee07f;
+    --success-background: #f0f7f1;
+    --interactive-danger: #d33a17;
+    --interactive-foreground-inverse-primary: #1e3e29;
+    --interactive-foreground-muted: #6f7672;
+    --interactive-foreground-primary: #ffffff;
+    --interactive-foreground-secondary: #292b29;
+    --interactive-foreground-tertiary: #292b29;
+    --interactive-inverse-muted: #6f7672;
+    --interactive-primary: #017848;
+    --interactive-secondary: #e8eae6;
+    --link: #222222;
+    --stroke-divider: #c7c9c5;
+    --stroke-border: #a4a8a4;
+    --text-highlight: #017848;
+    --text-inverse-highlight: #1ee07f;
+    --text-inverse-primary: #fffdfa;
+    --text-inverse-secondary: #fffdfa;
+    --text-primary: #292b29;
+    --text-secondary: #565d5a;
+    --warning-foreground: #b24a00;
+    --accent-border-secondary: #017848;
+
+  }
+}
+
+.footer-link {
+  display: inline;
+  padding: 5px 0;
+  cursor: pointer;
+  position: relative;
+  background-size: 0px 5px;
+  background-image: linear-gradient(currentcolor 25%, transparent 0px);
+  background-repeat: no-repeat;
+  background-position: 100% 100%;
+  transition: background-size 0.3s;
+}
+
+.footer-link:hover {
+  background-image: linear-gradient(currentcolor 25%, transparent 0px);
+  background-size: 100% 5px;
+  background-position: 0% 100%;
+}
+
+.none {
+  color: #fffdfa;
+  color: #f0f7f1;
+}
+
+.transition-width {
+  transition: width 0.3s ease-in-out;
+}
