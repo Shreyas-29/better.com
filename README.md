@@ -1,36 +1,61 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# It's Better!
 
-## Getting Started
+A responsive mortgage calculator built using React and TypeScript. This calculator helps users estimate their monthly mortgage payments based on inputs like home price, down payment, interest rate, loan term, property taxes, homeowners insurance, HOA fees, and utilities.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Home Price Slider**: Adjust the home price using a slider for quick and intuitive input.
+- **Dynamic Monthly Payment Calculation**: Automatically updates the monthly payment amount as inputs change.
+- **Responsive Design**: Ensures a great user experience on both desktop and mobile devices.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Installation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Clone the repository:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+   ```bash
+   git clone https://github.com/your-username/mortgage-calculator.git
+   cd mortgage-calculator
+   ```
+2. Install the dependencies:
+   ```bash
+    npm install
+   ```
+3. Start the development server:
+   ```bash
+    npm start
+   ```
 
-## Learn More
+This application will be available at ```http://localhost:3000```
 
-To learn more about Next.js, take a look at the following resources:
+and
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Live hosted at: [better.com](https://better.com)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Usage
+-	Open the application in your browser.
+-	Use the sliders and input fields to adjust the home price, down payment, interest rate, loan term, property taxes, homeowners insurance, HOA fees, and utilities.
+-	The monthly payment amount will automatically update based on the inputs.
 
-## Deploy on Vercel
+ ## Learnings
+-	TypeScript Integration:
+	    	Implemented type-safe state management using TypeScript.
+	    	Learned to handle type errors and implicit type issues in event handlers.
+-	State Management:
+	    	Utilized React’s useState hook for managing multiple input states.
+	    	Ensured state updates are reflected correctly in the UI.
+-	Component Usage:
+	    	Integrated and customized third-party components like Slider for a better user experience.
+	    	Managed component props and events effectively.
+-	Responsive Design:
+	    	Ensured the application is responsive and provides a good user experience on various devices.
+-	Number Formatting:
+	  	Implemented custom number formatting for user inputs and displayed values.
+-	Code Organization:
+	  	Organized the code for readability and maintainability.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Thanks for this opportunity!
+
+
+
+   
