@@ -1,3 +1,4 @@
+import AboutModal from "@/components/about-modal";
 import { buttonVariants } from "@/components/ui/button";
 import Wrapper from "@/components/wrapper";
 import { COMPANIES } from "@/constants";
@@ -9,7 +10,7 @@ import React from 'react'
 const AboutUsPage = () => {
     return (
         <div className="flex-1 bg-backgroundTertiary">
-            <Wrapper className="flex items-center min-h-screen max-w-screen-xl md:px-20 lg:px-28">
+            <Wrapper className="flex items-center max-w-screen-xl min-h-screen md:px-20 lg:px-28">
                 <div className="text-center">
                     <h1 className="text-2xl md:text-3xl font-bold !leading-none tracking-normal md:tracking-tight text-textHighlight">
                         Our mission
@@ -19,7 +20,7 @@ const AboutUsPage = () => {
                     </h2>
                 </div>
             </Wrapper>
-            <Wrapper className="flex flex-col-reverse px-20 pb-32 max-w-screen-xl gap-x-32 gap-y-6 md:px-20 lg:px-28 md:flex-row">
+            <Wrapper className="flex flex-col-reverse max-w-screen-xl px-20 pb-32 gap-x-32 gap-y-6 md:px-20 lg:px-28 md:flex-row">
                 <div className="w-full md:w-1/2">
                     <h2 className="text-2xl md:text-3xl font-bold text-textPrimary !leading-none md:tracking-tight">
                         The status quo is broken
@@ -32,20 +33,11 @@ const AboutUsPage = () => {
                     </Link>
                 </div>
                 <div className="relative w-full md:w-1/2">
-                    <button className="relative w-full h-96">
-                        <Image
-                            src="https://media.better.com/video/vishal-mission.jpg"
-                            alt=""
-                            width={1080}
-                            height={800}
-                            className="object-cover w-full h-full rounded-lg"
-                        />
-                        <CirclePlayIcon className="absolute z-20 w-16 h-16 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-textInversePrimary" />
-                    </button>
+                    <AboutModal />
                 </div>
             </Wrapper>
             <Wrapper className="p-20 bg-backgroundInverseSecondary text-textInversePrimary">
-                <div className="m-auto max-w-screen-lg">
+                <div className="max-w-screen-lg m-auto">
                     <h2 className="text-3xl md:text-4xl font-bold !leading-none text-white">
                         How we&apos;re changing things
                     </h2>
@@ -78,7 +70,7 @@ const AboutUsPage = () => {
                         <div className="inline-block px-8 py-2 rounded-full bg-backgroundInverseSecondary">
                             <h3 className="text-lg font-bold md:text-xl text-textInversePrimary">2014</h3>
                         </div>
-                        <div className="relative w-full p-4 my-6 -ml-4 rounded-lg bg-backgroundSecondary lg:p-8 -translate-x-1/2 lg:-ml-12">
+                        <div className="relative w-full p-4 my-6 -ml-4 -translate-x-1/2 rounded-lg bg-backgroundSecondary lg:p-8 lg:-ml-12">
                             <p className="text-base text-left text-textSecondary">
                                 After Vishal Garg&apos;s first attempt to purchase his own dream home, he quickly realized that the homebuying process is unnecessarily broken. This inspired him to found a technology-first company led by engineers and data experts with the mission of digitizing and automating home finance to make it cheaper, easier, and faster for all.
                             </p>
@@ -88,7 +80,7 @@ const AboutUsPage = () => {
                         <div className="inline-block px-8 py-2 rounded-full bg-backgroundInverseSecondary">
                             <h3 className="text-lg font-bold md:text-xl text-textInversePrimary">2015</h3>
                         </div>
-                        <div className="relative w-full p-4 my-6 ml-8 rounded-lg bg-backgroundSecondary lg:p-8 translate-x-1/2 lg:ml-16">
+                        <div className="relative w-full p-4 my-6 ml-8 translate-x-1/2 rounded-lg bg-backgroundSecondary lg:p-8 lg:ml-16">
                             <p className="text-base text-left text-textSecondary">
                                 Better Mortgage funds its first mortgage loan entirely online (without a single phone call!).
                             </p>
@@ -98,7 +90,7 @@ const AboutUsPage = () => {
                         <div className="inline-block px-8 py-2 rounded-full bg-backgroundInverseSecondary">
                             <h3 className="text-lg font-bold md:text-xl text-textInversePrimary">2016</h3>
                         </div>
-                        <div className="relative w-full p-4 my-6 -ml-4 rounded-lg bg-backgroundSecondary lg:p-8 -translate-x-1/2 lg:-ml-12">
+                        <div className="relative w-full p-4 my-6 -ml-4 -translate-x-1/2 rounded-lg bg-backgroundSecondary lg:p-8 lg:-ml-12">
                             <p className="text-base text-left text-textSecondary">
                                 Better Mortgage becomes a Fannie Mae approved seller + servicer and establishes relationships with top mortgage investors.
                             </p>
@@ -108,7 +100,7 @@ const AboutUsPage = () => {
                         <div className="inline-block px-8 py-2 rounded-full bg-backgroundInverseSecondary">
                             <h3 className="w-auto text-lg font-bold md:text-xl text-textInversePrimary">2017</h3>
                         </div>
-                        <div className="relative w-full p-4 my-6 ml-8 rounded-lg bg-backgroundSecondary lg:p-8 translate-x-1/2 lg:ml-16">
+                        <div className="relative w-full p-4 my-6 ml-8 translate-x-1/2 rounded-lg bg-backgroundSecondary lg:p-8 lg:ml-16">
                             <p className="text-base text-left text-textSecondary">
                                 Better expands into the real estate market with Better Real Estate.
                             </p>
@@ -118,7 +110,7 @@ const AboutUsPage = () => {
                         <div className="inline-block px-8 py-2 rounded-full bg-backgroundInverseSecondary">
                             <h3 className="w-auto text-lg font-bold md:text-xl text-textInversePrimary">2018</h3>
                         </div>
-                        <div className="relative w-full p-4 my-6 -ml-4 rounded-lg bg-backgroundSecondary lg:p-8 -translate-x-1/2 lg:-ml-12">
+                        <div className="relative w-full p-4 my-6 -ml-4 -translate-x-1/2 rounded-lg bg-backgroundSecondary lg:p-8 lg:-ml-12">
                             <p className="text-base text-left text-textSecondary">
                                 Better Mortgage partners with Ally Bank to build Ally powered by Better.
                             </p>
@@ -128,7 +120,7 @@ const AboutUsPage = () => {
                         <div className="inline-block px-8 py-2 rounded-full bg-backgroundInverseSecondary">
                             <h3 className="w-auto text-lg font-bold md:text-xl text-textInversePrimary">2019</h3>
                         </div>
-                        <div className="relative w-full p-4 my-6 ml-8 rounded-lg bg-backgroundSecondary lg:p-8 translate-x-1/2 lg:ml-16">
+                        <div className="relative w-full p-4 my-6 ml-8 translate-x-1/2 rounded-lg bg-backgroundSecondary lg:p-8 lg:ml-16">
                             <p className="text-base text-left text-textSecondary">
                                 Better Mortgage launches its pilot partnership with American Express to deliver a seamless homebuying experience to AMEX customers.
                             </p>
@@ -138,7 +130,7 @@ const AboutUsPage = () => {
                         <div className="inline-block px-8 py-2 rounded-full bg-backgroundInverseSecondary">
                             <h3 className="w-auto text-lg font-bold md:text-xl text-textInversePrimary">2021</h3>
                         </div>
-                        <div className="relative w-full p-4 my-6 -ml-4 rounded-lg bg-backgroundSecondary lg:p-8 -translate-x-1/2 lg:-ml-12">
+                        <div className="relative w-full p-4 my-6 -ml-4 -translate-x-1/2 rounded-lg bg-backgroundSecondary lg:p-8 lg:-ml-12">
                             <p className="text-base text-left text-textSecondary">
                                 Better acquires Trussle — The UK’s most innovative online mortgage broker.
                             </p>
@@ -148,7 +140,7 @@ const AboutUsPage = () => {
                         <div className="inline-block px-8 py-2 rounded-full bg-backgroundInverseSecondary">
                             <h3 className="w-auto text-lg font-bold md:text-xl text-textInversePrimary">2022</h3>
                         </div>
-                        <div className="relative w-full p-4 my-6 ml-8 rounded-lg bg-backgroundSecondary lg:p-8 translate-x-1/2 lg:ml-16">
+                        <div className="relative w-full p-4 my-6 ml-8 translate-x-1/2 rounded-lg bg-backgroundSecondary lg:p-8 lg:ml-16">
                             <p className="text-base text-left text-textSecondary">
                                 Better Mortgage becomes the first fintech to fund $100B home loans entirely online.
                             </p>
@@ -158,15 +150,15 @@ const AboutUsPage = () => {
                         <div className="inline-block px-8 py-2 rounded-full bg-backgroundInverseSecondary">
                             <h3 className="w-auto text-lg font-bold md:text-xl text-textInversePrimary">2023</h3>
                         </div>
-                        <div className="relative w-full p-4 my-6 -ml-4 rounded-lg bg-backgroundSecondary lg:p-8 -translate-x-1/2 lg:-ml-12">
+                        <div className="relative w-full p-4 my-6 -ml-4 -translate-x-1/2 rounded-lg bg-backgroundSecondary lg:p-8 lg:-ml-12">
                             <p className="text-base text-left text-textSecondary">Better Mortgage launches One Day Mortgage¹: The first offering to customers to go from application to {" "} <Link href="/with/one-day-mortgage-terms" className="underline">full mortgage Commitment Letter within 24 hours</Link>{" "}vs. typical industry process of 30+ days.</p>
                         </div>
-                        <div className="relative w-full p-4 my-6 ml-8 rounded-lg bg-backgroundSecondary lg:p-8 translate-x-1/2 lg:ml-16">
+                        <div className="relative w-full p-4 my-6 ml-8 translate-x-1/2 rounded-lg bg-backgroundSecondary lg:p-8 lg:ml-16">
                             <p className="text-base text-left text-textSecondary">
                                 Better Mortgage launches the fully digital 3-day HELOC².
                             </p>
                         </div>
-                        <div className="relative w-full p-4 my-6 -ml-4 rounded-lg bg-backgroundSecondary lg:p-8 -translate-x-1/2 lg:-ml-12">
+                        <div className="relative w-full p-4 my-6 -ml-4 -translate-x-1/2 rounded-lg bg-backgroundSecondary lg:p-8 lg:-ml-12">
                             <p className="text-base text-left text-textSecondary">
                                 Better Mortgage launches One Day Verified Approval Letter.
                             </p>
@@ -176,7 +168,7 @@ const AboutUsPage = () => {
                         <div className="inline-block px-8 py-2 rounded-full bg-backgroundInverseSecondary">
                             <h3 className="text-lg font-bold md:text-xl text-textInversePrimary">Today</h3>
                         </div>
-                        <div className="relative w-full p-4 my-6 ml-8 rounded-lg bg-backgroundSecondary lg:p-8 translate-x-1/2 lg:ml-16">
+                        <div className="relative w-full p-4 my-6 ml-8 translate-x-1/2 rounded-lg bg-backgroundSecondary lg:p-8 lg:ml-16">
                             <p className="text-base text-left text-textSecondary">
                                 You become part of the story by joining tens of thousands of happy Better Mortgage borrowers.
                                 <Link href="/start" className={buttonVariants({ className: "mt-4 bg-interactivePrimary hover:bg-backgroundInversePrimary rounded-lg" })}>
