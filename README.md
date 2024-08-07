@@ -29,7 +29,7 @@ This application will be available at ```http://localhost:3000```
 
 and
 
-Live hosted at: [better.com](https://better.com)
+Live hosted at: [better.com](https://better-com-shreyas.vercel.app/)
 
 ## Usage
 -	Open the application in your browser.
