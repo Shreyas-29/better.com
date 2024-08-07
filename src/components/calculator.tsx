@@ -14,6 +14,8 @@ import {
 
 const Calculator = () => {
 
+    let MINIMUM_HOME_PRICE = 50000;
+
     const [homePrice, setHomePrice] = useState<number>(50000);
     const [downPayment, setDownPayment] = useState<number>(10000);
     const [interestRate, setInterestRate] = useState<number>(6.5);
@@ -23,6 +25,7 @@ const Calculator = () => {
     const [hoaFees, setHoaFees] = useState<number>(132);
     const [utilities, setUtilities] = useState<number>(100);
     const [pmi, setPmi] = useState<number>(100);
+    const [zipCode, setZipCode] = useState<number | null>(null);
 
     const formatNumber = (value: number | string): string => {
         return Number(value).toLocaleString();
@@ -53,12 +56,17 @@ const Calculator = () => {
 
 
     const handleHomePriceChange = (newHomePrice: number) => {
+        if (newHomePrice < MINIMUM_HOME_PRICE) {
+            newHomePrice = MINIMUM_HOME_PRICE;
+            // update down payment proportionally
+        } 
         setHomePrice(newHomePrice);
-        setDownPayment(newHomePrice * (downPayment / homePrice)); // update down payment proportionally
+        setDownPayment(newHomePrice * (downPayment / homePrice));
     };
 
     const handleDownPaymentChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setDownPayment(Number(e.target.value.replace(/,/g, '')));
+        const newDownPayment = Number(e.target.value.replace(/,/g, ''));
+        setDownPayment(newDownPayment <= homePrice ? newDownPayment : homePrice);
     };
 
     const handleInterestRateChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -70,14 +78,17 @@ const Calculator = () => {
     };
 
     const calculateMonthlyPayment = (principal: number, annualInterestRate: number, years: number): number => {
-        const monthlyInterestRate = annualInterestRate / 100 / 12;
-        const numberOfPayments = years * 12;
+        const monthlyInterestRate = annualInterestRate / 100 / 12; // here we divide by 100 to convert the percentage to a decimal then divide by 12 to get the monthly interest rate
+        const numberOfPayments = years * 12; // here we multiply the years by 12 to get the number of monthly payments
         return (principal * monthlyInterestRate) / (1 - Math.pow(1 + monthlyInterestRate, -numberOfPayments));
+        // multiply the loan amount (principal) by the monthly interest rate. This gives the interest for the first month
+        // this part raises (1 + monthlyInterestRate) to the power of -numberOfPayments, it accounts for the effect of interest compounding over the entire loan period
+        // 1 - (result from above): subtract the above result from 1 to get the final denominator value 
     };
 
-    const principal = homePrice - downPayment;
-    const monthlyPrincipalAndInterest = calculateMonthlyPayment(principal, interestRate, loanTerm);
-    const totalMonthlyPayment = monthlyPrincipalAndInterest + propertyTaxes + homeownersInsurance + hoaFees + utilities + pmi;
+    const principal = homePrice - downPayment; // the loan amount
+    const monthlyPrincipalAndInterest = calculateMonthlyPayment(principal, interestRate, loanTerm); // calculate the monthly payment
+    const totalMonthlyPayment = monthlyPrincipalAndInterest + propertyTaxes + homeownersInsurance + hoaFees + utilities + pmi; // calculate the total monthly payment all things
 
     const width = (value: number, maxValue: number) => {
         return maxValue === 0 ? 0 : (value / maxValue) * 100;
@@ -140,6 +151,7 @@ const Calculator = () => {
                                 <Slider
                                     defaultValue={[homePrice / 10000]}
                                     max={100}
+                                    min={5}
                                     step={1}
                                     onValueChange={(value) => handleHomePriceChange(value[0] * 10000)}
                                     className="h-1"
@@ -154,8 +166,10 @@ const Calculator = () => {
                                                     ZIP code
                                                 </label>
                                                 <input
-                                                    type="text"
+                                                    type="number"
                                                     id="zip-code"
+                                                    value={Number(zipCode)}
+                                                    onChange={(e) => setZipCode(Number(e.target.value.toString().slice(0, 6)))}
                                                     maxLength={6}
                                                     className="w-full py-1 text-lg font-bold bg-transparent border-none text-textPrimary focus:border-none focus:outline-none"
                                                 />
@@ -229,7 +243,7 @@ const Calculator = () => {
                                                         id="loan-term"
                                                         value={loanTerm.toString()}
                                                         onChange={handleLoanTermChange}
-                                                        className="w-full py-1 text-lg font-bold bg-transparent border-none text-textPrimary focus:border-none focus:outline-none"
+                                                        className="w-full py-1 text-lg font-bold bg-background outline-none border-none text-textPrimary focus:border-none focus:outline-none"
                                                     >
                                                         <option value="15">15 years</option>
                                                         <option value="20">20 years</option>
@@ -258,13 +272,13 @@ const Calculator = () => {
                                 Monthly payment breakdown
                             </h4>
                             <p className="pt-4 text-3xl font-bold text-textPrimary md:text-5xl">
-                                ${formatNumber(totalMonthlyPayment.toFixed(2))}/mo
+                                ${isNaN(totalMonthlyPayment) ? "Invalid input" : formatNumber(totalMonthlyPayment.toFixed(2))}/mo
                             </p>
                             <div className="flex max-w-full pt-8">
                                 <HoverCard openDelay={0} closeDelay={0}>
                                     <HoverCardTrigger asChild>
                                         <div
-                                            className="h-20 rounded-full cursor-pointer bg-accentBackground transition-width min-w-4"
+                                            className="h-20 rounded-full cursor-pointer bg-accentBackground transition-width min-w-1"
                                             style={{ width: `${width(Number(mainPrice), total)}%` }}
                                         />
                                     </HoverCardTrigger>
@@ -280,7 +294,7 @@ const Calculator = () => {
                                 <HoverCard openDelay={0} closeDelay={0}>
                                     <HoverCardTrigger asChild>
                                         <div
-                                            className="h-20 rounded-full cursor-pointer bg-infoForeground transition-width min-w-4"
+                                            className="h-20 rounded-full cursor-pointer bg-infoForeground transition-width min-w-1"
                                             style={{ width: `${width(propertyTaxes, total)}%` }}
                                         />
                                     </HoverCardTrigger>
@@ -296,7 +310,7 @@ const Calculator = () => {
                                 <HoverCard openDelay={0} closeDelay={0}>
                                     <HoverCardTrigger asChild>
                                         <div
-                                            className="h-20 rounded-full cursor-pointer bg-infoSecondary transition-width min-w-4"
+                                            className="h-20 rounded-full cursor-pointer bg-infoSecondary transition-width min-w-1"
                                             style={{ width: `${width(homeownersInsurance, total)}%` }}
                                         />
                                     </HoverCardTrigger>
@@ -312,7 +326,7 @@ const Calculator = () => {
                                 <HoverCard openDelay={0} closeDelay={0}>
                                     <HoverCardTrigger asChild>
                                         <div
-                                            className="bg-[#ffd566] rounded-full cursor-pointer h-20 transition-width min-w-4"
+                                            className="bg-[#ffd566] rounded-full cursor-pointer h-20 transition-width min-w-1"
                                             style={{ width: `${width(hoaFees, total)}%` }}
                                         />
                                     </HoverCardTrigger>
@@ -328,7 +342,7 @@ const Calculator = () => {
                                 <HoverCard openDelay={0} closeDelay={0}>
                                     <HoverCardTrigger asChild>
                                         <div
-                                            className="bg-[#fe8b72] rounded-full cursor-pointer h-20 transition-width min-w-4"
+                                            className="bg-[#fe8b72] rounded-full cursor-pointer h-20 transition-width min-w-1"
                                             style={{ width: `${width(utilities, total)}%` }}
                                         />
                                     </HoverCardTrigger>
@@ -344,7 +358,7 @@ const Calculator = () => {
                                 <HoverCard openDelay={0} closeDelay={0}>
                                     <HoverCardTrigger asChild>
                                         <div
-                                            className="bg-[#b24a00] rounded-full cursor-pointer h-20 transition-width min-w-4"
+                                            className="bg-[#b24a00] rounded-full cursor-pointer h-20 transition-width min-w-1"
                                             style={{ width: `${width(pmi, total)}%` }}
                                         />
                                     </HoverCardTrigger>
