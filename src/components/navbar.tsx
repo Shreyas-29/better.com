@@ -42,14 +42,14 @@ const Navbar = () => {
     }, []);
 
     return (
-        <AnimationContainer reverse>
-            <header
-                className={cn(
-                    "sticky top-0 inset-x-0 z-50 w-full transition-colors duration-300",
-                    ROUTES.includes(pathname) ? "hidden" : "block",
-                    (isScrolled || isInverse) ? "bg-background" : "bg-accentPrimary",
-                )}
-            >
+        <header
+            className={cn(
+                "sticky top-0 inset-x-0 z-50 w-full transition-colors duration-300",
+                ROUTES.includes(pathname) ? "hidden" : "block",
+                (isScrolled || isInverse) ? "bg-background" : "bg-accentPrimary",
+            )}
+        >
+            <AnimationContainer reverse>
                 <nav className="flex items-center justify-between px-4 py-5 mx-auto md:px-5 max-w-screen-2xl">
                     <div className="flex items-center gap-x-5">
                         <div className="flex">
@@ -145,9 +145,9 @@ const Navbar = () => {
                         </Button>
                     </div>
                 </nav>
-                <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
-            </header>
-        </AnimationContainer>
+            </AnimationContainer>
+            <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
+        </header>
     )
 };
 
